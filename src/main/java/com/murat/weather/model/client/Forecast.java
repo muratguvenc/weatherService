@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class Forecast {
     private Temperature main;
+    private String dt_txt;
 }

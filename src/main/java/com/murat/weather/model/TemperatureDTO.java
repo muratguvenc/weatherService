@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 public class TemperatureDTO {
     private BigDecimal day;
     private BigDecimal night;
-    private BigDecimal min;
-    private BigDecimal max;
+    private BigDecimal dayMin;
+    private BigDecimal dayMax;
+    private BigDecimal nightMin;
+    private BigDecimal nightMax;
 }

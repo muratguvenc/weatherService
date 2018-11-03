@@ -1,5 +1,6 @@
 package com.murat.weather.controller;
 
+import com.murat.weather.model.ForecastResponseDTO;
 import com.murat.weather.service.ForecastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ public class ForecastController implements WeatherApi {
     @Override
     public ResponseEntity<ForecastResponse> weatherForecast(@PathVariable("city") final String city) {
 
-        forecastService.getForecastByCity(city);
+        final ForecastResponseDTO reponse = forecastService.getForecastByCity(city);
         //TODO convert to response object
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }

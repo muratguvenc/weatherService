@@ -73,10 +73,16 @@ definitions:
       night:
         type: number
         example: 11.24
-      min:
+      dayMin:
         type: number
         example: 9.96
-      max:
+      dayMax:
+        type: number
+        example: 17.01
+      nightMin:
+        type: number
+        example: 9.96
+      nightMax:
         type: number
         example: 17.01
   Pressure:
