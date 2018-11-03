@@ -11,7 +11,7 @@ tags:
 schemes:
 - "http"
 paths:
-  /{city}/forecast:
+  /weather/{city}/forecast:
     get:
       tags:
       - "forecast"
