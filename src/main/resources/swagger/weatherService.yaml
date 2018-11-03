@@ -1,0 +1,102 @@
+swagger: "2.0"
+info:
+  description: "Weather condition retrieval service"
+  version: "1.0.0"
+  title: "Weather Service"
+host: "api.weatherservice.murat.com"
+basePath: "/data"
+tags:
+- name: "forecast"
+  description: "Forecast about upcoming weather conditions"
+schemes:
+- "http"
+paths:
+  /{city}/forecast:
+    get:
+      tags:
+      - "forecast"
+      summary: "Weather forecast for given city"
+      operationId: "weatherForecast"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: city
+        in: path
+        description: "City Name"
+        required: true
+        type: string
+      responses:
+        200:
+          description: "Successful Operation"
+          schema:
+            $ref: "#/definitions/ForecastResponse"
+        400:
+          description: "Bad Request"
+        404:
+          description: "City Not Found"
+        503:
+          description: "Service Unavailable"
+definitions:
+  BaseResponse:
+    type: object
+    properties:
+      success:
+        type: boolean
+        default: false
+      errorCode:
+        type: string
+      errorMessage:
+        type: string
+  ForecastResponse:
+    type: object
+    allOf:
+      - $ref: '#/definitions/BaseResponse'
+      - properties:
+          temperatures:
+            type: array
+            items:
+              $ref: "#/definitions/Temperature"
+          pressures:
+            type: array
+            items:
+              $ref: "#/definitions/Pressure"
+          city:
+            $ref: "#/definitions/City"
+  Temperature:
+    type: object
+    properties:
+      day:
+        type: number
+        example: 15.73
+      night:
+        type: number
+        example: 11.24
+      min:
+        type: number
+        example: 9.96
+      max:
+        type: number
+        example: 17.01
+  Pressure:
+    type: object
+    properties:
+      seaLevel:
+        type: number
+        example: 1032.29
+      groundLevel:
+        type: number
+        example: 1022.65
+  City:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "745044"
+      name:
+        type: string
+        example: "Istanbul"
+      country:
+        type: string
+        example: "TR"
