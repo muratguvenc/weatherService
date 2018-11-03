@@ -28,4 +28,11 @@ public class ForecastController implements WeatherApi {
         response.setSuccess(true);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Void> clearCache() {
+
+        forecastService.deleteCache();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

@@ -11,6 +11,15 @@ tags:
 schemes:
 - "http"
 paths:
+  /weather/cache:
+    delete:
+      tags:
+      - "forecast"
+      summary: "clears cached data"
+      operationId: "clearCache"
+      responses:
+        200:
+          description: "Successful Operation"
   /weather/{city}/forecast:
     get:
       tags:
@@ -36,8 +45,8 @@ paths:
           description: "Bad Request"
         404:
           description: "City Not Found"
-        503:
-          description: "Service Unavailable"
+        500:
+          description: "Internal Server Error"
 definitions:
   BaseResponse:
     type: object

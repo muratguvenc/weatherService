@@ -1,10 +1,13 @@
 package com.murat.weather.client;
 
 import com.murat.weather.config.FeignClientConfiguration;
+import com.murat.weather.constant.exception.CityNotFoundException;
 import com.murat.weather.model.client.ForecastListResponse;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +29,15 @@ public class WeatherClient {
     private String unit;
 
     public ForecastListResponse getForecastList(final String city) {
-        return client.getForecastList(city, unit, apikey);
+        try {
+            return client.getForecastList(city, unit, apikey);
+        } catch (FeignException ex) {
+            if (HttpStatus.NOT_FOUND.equals(HttpStatus.valueOf(ex.status()))) {
+                throw new CityNotFoundException();
+            } else {
+                throw ex;
+            }
+        }
     }
 
     @FeignClient(
