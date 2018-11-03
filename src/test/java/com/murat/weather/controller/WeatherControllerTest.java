@@ -37,7 +37,7 @@ public class WeatherControllerTest {
 
         this.mockMvc.perform(get(FORECAST_URL_FOR_ISTANBUL)
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().is2xxSuccessful());
     }
 
 }
