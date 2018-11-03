@@ -1,5 +1,5 @@
 # weatherService
-Three day aggregation service for weather condition, backed by openweather api
+Three day aggregation service for weather condition, backed by openweathermap api
 
 API documentation can be obtained from [here](https://github.com/muratguvenc/weatherService/tree/master/src/main/resources/swagger) via `weatherService.yaml` file
 
@@ -35,3 +35,6 @@ Request url :
 
 - ``` mvn clean package ``` 
 - ``` mvn spring-boot:run ```
+
+final note : openweathermap api key found in application properties is not an active key, 
+please use an active key to see service running.
